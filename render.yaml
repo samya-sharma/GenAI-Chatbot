@@ -14,10 +14,10 @@ services:
 
   - type: web
     name: genai-chatbot-frontend
-    env: node
+    env: static  # ✅ It's a static site
     plan: free
     buildCommand: npm install && npm run build
-    staticPublishPath: build
+    staticPublishPath: frontend/build
     buildFilter:
       paths:
         - frontend/**
