@@ -1,21 +1,23 @@
 services:
   - type: web
-    name: genai-chatbot-backend
+    name: genai-backend
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
     envVars:
       - key: OPENAI_API_KEY
         sync: false
+    plan: free
     buildFilter:
       paths:
         - backend/**
 
   - type: web
-    name: genai-chatbot-frontend
+    name: genai-frontend
     env: static
-    buildCommand: npm install && npm run build
+    buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/build
+    plan: free
     buildFilter:
       paths:
         - frontend/**
